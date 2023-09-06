@@ -334,7 +334,7 @@ document.addEventListener("DOMContentLoaded", function () {
         premium: 1,
         "premium+": 1.2,
         luxury: 1.5,
-        "ultra luxury": 2,
+        "ultraluxury": 2,
     };
 
     // Define base costs for each location
@@ -342,9 +342,9 @@ document.addEventListener("DOMContentLoaded", function () {
         ahmedabad: 20000,
         mumbai: 30000,
         hyderabad: 25000,
-        "metro outskirt": 20000,
-        "metro 1": 30000,
-        "metro 2": 25000,
+        "metrooutskirt": 20000,
+        "metro1": 30000,
+        "metro2": 25000,
     };
 
     function updateQuantities() {
