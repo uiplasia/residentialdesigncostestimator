@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Result</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="icon" href="favicon.ico">
+</head>
+<body>
+    <h1> <img class="logo" src="companylogo.jpg" alt="UIPL"></h1>
+    <h7>Result</h7>
+    <ul id="selected-items-list">
+        <!-- Selected items will be displayed here -->
+    </ul>
+    <script>
+       document.addEventListener("DOMContentLoaded", function () {
+    // Get the URL parameters for selected items, total units, total cost, signing amount, and layout finalization amount
+    const urlParams = new URLSearchParams(window.location.search);
+    const selectedItemsParam = urlParams.get("selectedItems");
+    const totalUnitsParam = urlParams.get("totalUnits");
+    const totalCostParam = urlParams.get("totalCost");
+    const signingAmountParam = urlParams.get("signingAmount");
+    const layoutFinalizationAmountParam = urlParams.get("layoutFinalizationAmount");
+    const finalization3DCostParam = urlParams.get("finalization3DCost");
+
+    // Parse the selected items JSON string
+    const selectedItems = JSON.parse(decodeURIComponent(selectedItemsParam));
+
+    // Get a reference to the element where you want to display the selected items and quantities
+    const selectedItemsList = document.getElementById("selected-items-list");
+
+    // Loop through the selected items and display only those with a quantity of at least 1
+    for (const itemName in selectedItems) {
+        const quantity = selectedItems[itemName];
+        if (quantity >= 1) {
+            const listItem = document.createElement("li");
+            listItem.textContent = `${itemName}: ${quantity}`;
+            selectedItemsList.appendChild(listItem);
+        }
+    }
+
+    // Display the total units, total cost, signing amount, and layout finalization amount on the page
+    
+
+    const totalCostElement = document.createElement("p");
+    totalCostElement.textContent = `Total Cost: ${totalCostParam}`;
+    document.body.appendChild(totalCostElement);
+
+    const signingAmountElement = document.createElement("p");
+    signingAmountElement.textContent = `Signing Amount: ${signingAmountParam}`;
+    document.body.appendChild(signingAmountElement);
+
+    const layoutFinalizationAmountElement = document.createElement("p");
+    layoutFinalizationAmountElement.textContent = `Layout Finalization Amount: ${layoutFinalizationAmountParam}`;
+    document.body.appendChild(layoutFinalizationAmountElement);
+
+    const finalization3DCostElement = document.createElement("p");
+    finalization3DCostElement.textContent = `3D Finalization Amount: ${finalization3DCostParam}`;
+    document.body.appendChild(finalization3DCostElement);
+
+});
+
+    </script>
+      
+      <button id="download-pdf-btn">Download PDF</button>
+    
+      <script>
+        document.getElementById("download-pdf-btn").addEventListener("click", function () {
+            window.print();
+        });
+    </script>
+</body>
+</html>
