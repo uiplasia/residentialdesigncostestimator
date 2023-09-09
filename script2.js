@@ -449,7 +449,7 @@ document.getElementById("calculate-btn").addEventListener("click", calculateEsti
 function calculateEstimate() {
     const selectedLocation = locationDropdown.value.toLowerCase();
     const selectedPlan = planDropdown.value.toLowerCase();
-    
+
     let totalUnits = 0;
 
     for (const type in inputFields) {

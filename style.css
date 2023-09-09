@@ -187,5 +187,41 @@
             border-spacing: 2px;
             border-color: gray;
             margin-top: 30px;
+            
         }
         
+
+      th, td {
+          border: 1px solid black;
+          padding: 10px;
+          text-align: left;
+          width: 6000px;
+      }
+      td input[type='number']{
+        width: 90%;
+       }
+
+      th {
+          background-color: #f2f2f2;
+      }
+
+    .Disclaimer{
+      font-size: 10px;
+    }
+    
+#description{
+  font-size: 13px;
+}
+@page {
+  size: auto;   /* auto is the initial value */
+  margin: 0;  /* this affects the margin in the printer settings */
+}
+#EstimatedPriceCell{
+  background-color: #4A6073 ;
+}
+#scope li{
+  text-transform: lowercase;
+}
+#scope li::first-letter{
+  text-transform: uppercase;
+} 

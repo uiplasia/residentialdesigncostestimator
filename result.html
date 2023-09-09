@@ -7,13 +7,67 @@
 </head>
 <body>
     <h1> <img class="logo" src="companylogo.jpg" alt="UIPL"></h1>
-    <h7>Result</h7>
-    <ul id="selected-items-list">
-        <!-- Selected items will be displayed here -->
-    </ul>
-    <script>
-       document.addEventListener("DOMContentLoaded", function () {
-    // Get the URL parameters for selected items, total units, total cost, signing amount, and layout finalization amount
+    <div class="container"> 
+
+        <h7>Budget Bliss: Residential Design</h7>
+        <table>
+            <thead>
+                <tr>
+                    <th><strong> Details</strong></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>City</strong></td>
+                    <td id="CityCell"></td>
+                </tr>
+                    <td><strong>Plan Type</strong></td>
+                    <td id = "TablePlan"></td>
+                </tr>
+                <tr>
+                    <td><strong>Estimated Price</strong></td>
+                    <td id="EstimatedPriceCell"></td>
+                </tr>
+                    <td><strong>Signing Amount</strong></td>
+                    <td id="SigningAmountCell"></td>
+                </tr>
+                    <td><strong>At Finalization of Layout</strong></td>
+                    <td id="AtFinalizationOfLayoutCell"></td>
+                </tr>
+                    <td><strong>At Finalization of 3D</strong></td>
+                    <td id="AtFinalizationOf3DCell"></td>
+                </tr>
+
+        <table>
+            <thead>
+                <tr>
+                    <th><strong>Project Scope</strong></th>
+                    <th id = "TablePlan2"><strong>Plan Type: </strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="scope"><ul id="selected-items-list">
+                    </ul></td>
+                    <td id="description"><ul id="planDescription"></ul></td>
+                </tr>
+                
+
+
+</tbody>
+</table>
+<div class = "Disclaimer">
+    
+    <strong>Disclaimer:</strong>
+    <br>
+    *This document is for informational purposes only and does not create any legally binding obligations. The figures presented are preliminary estimates and should not be considered as the final project cost but rather serve as a general guideline. It is essential to note that these estimates are subject to change, considering various factors that can impact project pricing based on market dynamics. For a precise project budget, consider utilising our design/turnkey contract services. Our expert consultation will guide you through the process.
+</div>
+    
+    </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                // Get the URL parameters for selected items, total units, total cost, signing amount, and layout finalization amount
     const urlParams = new URLSearchParams(window.location.search);
     const selectedItemsParam = urlParams.get("selectedItems");
     const totalUnitsParam = urlParams.get("totalUnits");
@@ -21,52 +75,171 @@
     const signingAmountParam = urlParams.get("signingAmount");
     const layoutFinalizationAmountParam = urlParams.get("layoutFinalizationAmount");
     const finalization3DCostParam = urlParams.get("finalization3DCost");
-
+    const selectedLocationParam = urlParams.get("selectedLocation");
+    const selectedHouseSizeParam = urlParams.get("selectedHouseSize");
+    const selectedProjectTypeParam = urlParams.get("selectedProjectType");
+    const selectedPlanTypeParam = urlParams.get("selectedPlan"); 
+               
     // Parse the selected items JSON string
     const selectedItems = JSON.parse(decodeURIComponent(selectedItemsParam));
-
+    
     // Get a reference to the element where you want to display the selected items and quantities
     const selectedItemsList = document.getElementById("selected-items-list");
-
+    
     // Loop through the selected items and display only those with a quantity of at least 1
     for (const itemName in selectedItems) {
         const quantity = selectedItems[itemName];
         if (quantity >= 1) {
             const listItem = document.createElement("li");
-            listItem.textContent = `${itemName}: ${quantity}`;
+            listItem.textContent = `${itemName} ×${quantity}`;
             selectedItemsList.appendChild(listItem);
         }
+        
     }
+     
 
-    // Display the total units, total cost, signing amount, and layout finalization amount on the page
+
+    
+    const cityCell = document.getElementById("CityCell");
+    
+    // Set the text content of the house size cell to the value of selectedHouseSizeParam
+    cityCell.textContent += selectedLocationParam.charAt(0).toUpperCase() + selectedLocationParam.slice(1);;
+    
     
 
-    const totalCostElement = document.createElement("p");
-    totalCostElement.textContent = `Total Cost: ${totalCostParam}`;
-    document.body.appendChild(totalCostElement);
+    // Get a reference to the table cell where you want to display the plan type
+    const planTypeCell = document.getElementById("TablePlan");
 
-    const signingAmountElement = document.createElement("p");
-    signingAmountElement.textContent = `Signing Amount: ${signingAmountParam}`;
-    document.body.appendChild(signingAmountElement);
+    // Set the text content of the plan type cell to the value of selectedPlanTypeParam
+    planTypeCell.textContent += selectedPlanTypeParam.charAt(0).toUpperCase() + selectedPlanTypeParam.slice(1);
 
-    const layoutFinalizationAmountElement = document.createElement("p");
-    layoutFinalizationAmountElement.textContent = `Layout Finalization Amount: ${layoutFinalizationAmountParam}`;
-    document.body.appendChild(layoutFinalizationAmountElement);
+    const planTypeCell2 = document.getElementById("TablePlan2");
 
-    const finalization3DCostElement = document.createElement("p");
-    finalization3DCostElement.textContent = `3D Finalization Amount: ${finalization3DCostParam}`;
-    document.body.appendChild(finalization3DCostElement);
+    // Set the text content of the plan type cell to the value of selectedPlanTypeParam
+    planTypeCell2.textContent += selectedPlanTypeParam.charAt(0).toUpperCase() + selectedPlanTypeParam.slice(1);
+    
+    const estimatedPriceCell = document.getElementById("EstimatedPriceCell");
 
+// Assuming totalCostParam is a numeric value, e.g., 10000
+const formattedPrice = parseFloat(totalCostParam).toLocaleString("en-IN", {
+    style: "currency",
+    currency: "INR"
 });
 
-    </script>
-      
-      <button id="download-pdf-btn">Download PDF</button>
+estimatedPriceCell.textContent = formattedPrice;
+
+const signingAmountCell = document.getElementById("SigningAmountCell");
+
+// Assuming signingAmountParam is a numeric value, e.g., 5000
+const formattedSigningAmount = parseFloat(signingAmountParam).toLocaleString("en-IN", {
+    style: "currency",
+    currency: "INR"
+});
+
+signingAmountCell.textContent = formattedSigningAmount;
+
+
+const atFinalizationOfLayoutCell = document.getElementById("AtFinalizationOfLayoutCell");
+
+// Assuming layoutFinalizationAmountParam is a numeric value, e.g., 75000
+const formattedLayoutFinalizationAmount = parseFloat(layoutFinalizationAmountParam).toLocaleString("en-IN", {
+    style: "currency",
+    currency: "INR"
+});
+
+atFinalizationOfLayoutCell.textContent = formattedLayoutFinalizationAmount;
+
+
+const atFinalizationOf3DCell = document.getElementById("AtFinalizationOf3DCell");
+
+// Assuming finalization3DCostParam is a numeric value, e.g., 90000
+const formattedFinalization3DAmount = parseFloat(finalization3DCostParam).toLocaleString("en-IN", {
+    style: "currency",
+    currency: "INR"
+});
+
+atFinalizationOf3DCell.textContent = formattedFinalization3DAmount;
+
+
+    const planDescriptionList = document.getElementById("planDescription");
+
+// Define the plan descriptions based on selectedPlanTypeParam
+let planDescription = "";
+
+if (selectedPlanTypeParam === "premium") {
+    planDescription = `
+            <li>Family & Individual Lifestyle Analysis </li>
+            <li>Research & Study of Requirements</li>
+            <li>Style & Theme Selection</li>
+            <li>Effective Space Planning</li>
+            <li>Furniture, Civil, Electrical, Flooring & Ceiling Layout</li>
+            <li>Colour Concept</li>
+            <li>Customized Conceptual Designing with Elevation</li>
+            <li>Detailed Working Drawings</li>
+            <li>3D Images to Visualize Important Areas</li>
+            <li>Exclusive Arts for Desired Ambiance</li>
+    `;
+} else if (selectedPlanTypeParam === "premiumplus") {
+    planDescription = `
+    <li>Family & Individual Lifestyle Analysis </li>
+            <li>Research & Study of Requirements</li>
+            <li>Style & Theme Selection</li>
+            <li>Effective Space Planning</li>
+            <li>Furniture, Civil, Electrical, Flooring & Ceiling Layout</li>
+            <li>Colour Concept</li>
+            <li>Customized Conceptual Designing with Elevation</li>
+            <li>Detailed Working Drawings</li>
+            <li> 3D Images to Visualize Important Areas</li>
+            <li> Exclusive Arts for Desired Ambiance</li>
+    `;
+} else if (selectedPlanTypeParam === "luxury") {
+    planDescription = `
+    <li>Family & Individual Lifestyle Analysis </li>
+            <li>Research & Study of Requirements</li>
+            <li>Style & Theme Selection</li>
+            <li>Effective Space Planning</li>
+            <li>Furniture, Civil, Electrical, Flooring & Ceiling Layout</li>
+            <li>Colour Concept</li>
+            <li>Customized Conceptual Designing with Elevation</li>
+            <li>Detailed Working Drawings</li>
+            <li> 3D Images to Visualize Important Areas</li>
+            <li> Exclusive Arts for Desired Ambiance</li>
+            <li>Printed Coffee Table Book</li>
+    `;
+} else if (selectedPlanTypeParam === "ultraluxury") {
+    planDescription = `
+    Family & Individual Lifestyle Analysis </li>
+            <li>Research & Study of Requirements</li>
+            <li>Style & Theme Selection</li>
+            <li>Effective Space Planning</li>
+            <li>Furniture, Civil, Electrical, Flooring & Ceiling Layout</li>
+            <li>Colour Concept</li>
+            <li>Customized Conceptual Designing with Elevation</li>
+            <li>Detailed Working Drawings</li>
+            <li> 3D Images to Visualize Important Areas</li>
+            <li> Exclusive Arts for Desired Ambiance</li>
+            <li>Printed Coffee Table Book</li>
+            <li> 3D Walkthrough</li>
+
+    `;
+} else {
+    planDescription = "Plan description not available.";
+}
+
+// Set the inner HTML of the planDescriptionList with the generated plan description
+planDescriptionList.innerHTML = planDescription;
+   
     
-      <script>
-        document.getElementById("download-pdf-btn").addEventListener("click", function () {
-            window.print();
-        });
+});
+
+</script>
+
+<button id="download-pdf-btn">Download PDF</button>
+
+<script>
+    document.getElementById("download-pdf-btn").addEventListener("click", function () {
+        window.print();
+    });
     </script>
 </body>
 </html>
