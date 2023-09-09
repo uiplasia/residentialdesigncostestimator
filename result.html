@@ -5,6 +5,30 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="icon" href="favicon.ico">
 </head>
+<style>
+    body{
+        background-color: white;
+    }
+    h7{width: 100%;
+            height: 200px;
+           flex-shrink: 0;
+           margin: 0 0 0 0;
+           margin-bottom: 5%;
+           color: #000;
+           font-family: Alegreya;
+           font-size: 40px;
+           font-style: normal;
+           font-weight: 700;
+           line-height: normal;
+           text-align: center;
+           margin-bottom: 10px;
+
+          }
+          th{
+            background-color:  #4A6073;
+            color: white;
+          }
+</style>
 <body>
     <h1> <img class="logo" src="companylogo.jpg" alt="UIPL"></h1>
     <div class="container"> 
@@ -13,8 +37,8 @@
         <table>
             <thead>
                 <tr>
-                    <th><strong> Details</strong></th>
-                    <th></th>
+                    <th colspan="2"><strong> Project Details</strong></th>
+                    
                 </tr>
             </thead>
             <tbody>
@@ -103,7 +127,7 @@
     const cityCell = document.getElementById("CityCell");
     
     // Set the text content of the house size cell to the value of selectedHouseSizeParam
-    cityCell.textContent += selectedLocationParam.charAt(0).toUpperCase() + selectedLocationParam.slice(1);;
+    cityCell.textContent += selectedLocationParam.charAt(0).toUpperCase() + selectedLocationParam.slice(1);
     
     
 
@@ -161,7 +185,7 @@ const formattedFinalization3DAmount = parseFloat(finalization3DCostParam).toLoca
 atFinalizationOf3DCell.textContent = formattedFinalization3DAmount;
 
 
-    const planDescriptionList = document.getElementById("planDescription");
+const planDescriptionList = document.getElementById("planDescription");
 
 // Define the plan descriptions based on selectedPlanTypeParam
 let planDescription = "";
