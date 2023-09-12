@@ -3,6 +3,7 @@
 <head>
     <title>Design Fee Estimator</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="icon" href="favicon.ico">
 
     
 </head>
@@ -11,7 +12,11 @@
     <div class="container">
         <h1>Design Fee Estimator</h1>
         
-        <form id="estimateForm">
+        <form method="post" action="https://script.google.com/macros/s/AKfycbwBq8TR4q0mZ1MEtbftE58J4hfR-Eo-nzEJixkC-gW378KPgcjYBiWH42reQLb7u5v4/exec" name ="contact-form">
+            <label for="ClientName">Name:</label>
+            <input type="text" id="ClientName" name="ClientName">
+            <label for="ProjectID">ProjectID</label>
+            <input name="ProjectID">
             <label for="city">City:</label>
             <select id="city" name="city">
                 <option value="" disabled selected>Select City</option>
@@ -256,14 +261,20 @@
 
 </tbody>
 </table>
+<input type="hidden" name="calculationResult" id="calculationResult" value="">
+<input type="hidden" id="hiddenClientName" name="hiddenClientName">
+<input type="hidden" id="hiddenProjectID" name="hiddenProjectID">
+
 <label for="totalCost">Estimated Design Fee:</label>
-<div id="result">-</div>
+<div id="result" name="result">-</div>
             <br>
-            <button type="button" id="calculate-btn">Calculate Estimate</button>
+            <button type="submit" id="calculate-btn">Calculate Estimate</button>
         
         </form>
     </div>
+    
 
     <script src="script.js"></script>
+  
 </body>
 </html>

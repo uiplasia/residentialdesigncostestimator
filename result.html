@@ -42,6 +42,20 @@
                 </tr>
             </thead>
             <tbody>
+                
+                <tr>
+                    <td><strong>Client Name</strong></td>
+                    <td id="ClientNameCell"></td>
+                </tr>
+                
+                <tr>
+                    <td><strong>Project ID</strong></td>
+                    <td id="ProjectIDCell"></td>
+                </tr>
+                <tr>
+                    <td><strong>Project Type</strong></td>
+                    <td id="ProjectTypeCell"></td>
+                </tr>
                 <tr>
                     <td><strong>City</strong></td>
                     <td id="CityCell"></td>
@@ -103,6 +117,9 @@
     const selectedHouseSizeParam = urlParams.get("selectedHouseSize");
     const selectedProjectTypeParam = urlParams.get("selectedProjectType");
     const selectedPlanTypeParam = urlParams.get("selectedPlan"); 
+    const selectedClientNameParam = urlParams.get("clientName");
+    const selectedProjectIDParam = urlParams.get("projectID");
+
                
     // Parse the selected items JSON string
     const selectedItems = JSON.parse(decodeURIComponent(selectedItemsParam));
@@ -123,11 +140,21 @@
      
 
 
-    
+    console.log('Client Name:',selectedProjectIDParam);
+    const clientNameCell = document.getElementById("ClientNameCell");
+    clientNameCell.textContent += selectedClientNameParam;
+
+
+    const projectIDCell = document.getElementById("ProjectIDCell");
+    projectIDCell.textContent += selectedProjectIDParam;
     const cityCell = document.getElementById("CityCell");
     
     // Set the text content of the house size cell to the value of selectedHouseSizeParam
     cityCell.textContent += selectedLocationParam.charAt(0).toUpperCase() + selectedLocationParam.slice(1);
+    const projectTypeCell = document.getElementById("ProjectTypeCell");
+    
+    // Set the text content of the house size cell to the value of selectedHouseSizeParam
+    projectTypeCell.textContent += selectedProjectTypeParam.charAt(0).toUpperCase() + selectedProjectTypeParam.slice(1);
     
     
 
@@ -185,6 +212,7 @@ const formattedFinalization3DAmount = parseFloat(finalization3DCostParam).toLoca
 atFinalizationOf3DCell.textContent = formattedFinalization3DAmount;
 
 
+
 const planDescriptionList = document.getElementById("planDescription");
 
 // Define the plan descriptions based on selectedPlanTypeParam
@@ -232,7 +260,7 @@ if (selectedPlanTypeParam === "premium") {
     `;
 } else if (selectedPlanTypeParam === "ultraluxury") {
     planDescription = `
-    Family & Individual Lifestyle Analysis </li>
+    <li>Family & Individual Lifestyle Analysis </li>
             <li>Research & Study of Requirements</li>
             <li>Style & Theme Selection</li>
             <li>Effective Space Planning</li>

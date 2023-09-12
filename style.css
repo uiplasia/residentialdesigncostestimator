@@ -23,7 +23,24 @@
             background: #DDE9EC;
             box-shadow: 20px 20px 20px 10px rgba(0, 0, 0, 0.25);
         }
-
+        select, input[type="text"] {
+          width: 100%;
+          padding: 10px;
+          margin-bottom: 10px;
+          border-radius: 20px;
+          border: 5px solid #BDA081;
+          background: #DDE9EC;
+          box-shadow: 20px 20px 20px 10px rgba(0, 0, 0, 0.25);
+      }
+      input{
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 20px;
+        border: 5px solid #BDA081;
+        background: #DDE9EC;
+        box-shadow: 20px 20px 20px 10px rgba(0, 0, 0, 0.25);
+      }
         #result {
             font-weight: bold;
         }
@@ -205,11 +222,12 @@
       }
 
     .Disclaimer{
-      font-size: 10px;
+      margin-top: 10px;
+      font-size: 6px;
     }
     
 #description{
-  font-size: 13px;
+  font-size: 10px;
 }
 @page {
   size: auto;   /* auto is the initial value */
@@ -225,3 +243,7 @@
 #scope li::first-letter{
   text-transform: uppercase;
 } 
+#scope{
+  font-size: 10px;
+}
+

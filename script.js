@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Get references to the "House Size" dropdown and input fields
     const houseSizeDropdown = document.getElementById("projectSize");
     const projectTypeDropdown = document.getElementById("projectType");
-
+    
     // Define input field names with spaces as they appear in your HTML
     const inputFields = {
         "KITCHEN Quantity": document.querySelector('input[name="KITCHENQuantity"]'),
@@ -328,6 +328,7 @@ document.addEventListener("DOMContentLoaded", function () {
     };
     const locationDropdown = document.getElementById("city");
     const planDropdown = document.getElementById("projectPlan");
+    
 
     // Define cost factors based on the plan
     const costFactors = {
@@ -351,6 +352,9 @@ document.addEventListener("DOMContentLoaded", function () {
         // Get the selected values from the dropdowns
         const selectedHouseSize = houseSizeDropdown.value;
         const selectedProjectType = projectTypeDropdown.value;
+        const clientName = document.getElementById('ClientName').textContent;
+    
+        
 
         // Check if the selected house size and project type exist in the quantities object
         if (quantities[selectedHouseSize] && quantities[selectedHouseSize][selectedProjectType]) {
@@ -433,14 +437,11 @@ document.addEventListener("DOMContentLoaded", function () {
         "Bunker Quantity": 1,
     };
 
-    // Get a reference to the result element
-
 const resultElement = document.getElementById("result");
     locationDropdown.addEventListener("change", calculateEstimate);
     planDropdown.addEventListener("change", calculateEstimate);
     const selectedHouseSize = houseSizeDropdown.value;
-    const selectedProjectType = projectTypeDropdown.value;
-   
+   projectTypeDropdown.addEventListener("change",calculateEstimate);
 // Add an event listener to the "Calculate Estimate" button
 document.getElementById("calculate-btn").addEventListener("click", calculateEstimate);
 
@@ -448,6 +449,7 @@ document.getElementById("calculate-btn").addEventListener("click", calculateEsti
 function calculateEstimate() {
     const selectedLocation = locationDropdown.value.toLowerCase();
     const selectedPlan = planDropdown.value.toLowerCase();
+    const selectedProjectType = projectTypeDropdown.value.toLowerCase();
     
     let totalUnits = 0;
 
@@ -488,9 +490,11 @@ function calculateEstimate() {
     // Display the total units and total cost
     if (!isNaN(totalUnits) && !isNaN(totalCost)) {
         resultElement.textContent = ` Total Cost: ${totalCost}`;
+        
     } else {
         resultElement.textContent = "Invalid input. Please enter numeric values.";
     }
+    document.getElementById('calculationResult').value = totalCost;
 
     // Inside the "calculateEstimate" function
     const selectedItems = {}; // Initialize an empty object
@@ -500,12 +504,38 @@ function calculateEstimate() {
         const quantity = parseFloat(inputValue) || 0;
         selectedItems[type] = quantity; // Store the item name as the key and quantity as the value
     }
+    const form = document.forms['contact-form'];
+    let clientName = ''; // Declare clientName in the outer scope
+    let projectID ='';
+
+    form.addEventListener('submit', function (event) {
+        // Prevent the default form submission behavior
+        event.preventDefault();
+      
+        // Get the value of the client name input field
+        clientName = form.elements['ClientName'].value;
+        projectID = form.elements['ProjectID'].value;
+        // Log the client name to the console
+        console.log('Project ID inside:',projectID);
+        console.log('Client Name inside event handler:', clientName);
+      
+        // Encode the selected items as a JSON string
+        const selectedItemsParam = encodeURIComponent(JSON.stringify(selectedItems));
+        const resultUrl = `result.html?selectedItems=${selectedItemsParam}&totalUnits=${totalUnits}&totalCost=${totalCost}&signingAmount=${signingAmount}&layoutFinalizationAmount=${layoutFinalizationAmount}&finalization3DCost=${finalization3DCost}&selectedLocation=${selectedLocation}&selectedHouseSize=${selectedHouseSize}&selectedPlan=${selectedPlan}&selectedProjectType=${selectedProjectType}&clientName=${clientName}&projectID=${projectID}`;
+      
+        // Open "result.html" in a new tab
+        window.open(resultUrl, '_blank');
     
+        // Call the function to log the client name outside the event handler
+        logClientNameOutsideHandler(clientName);
+        logClientNameOutsideHandler(projectID);
+        this.submit();
+    });
+    
+    function logClientNameOutsideHandler(clientName) {
+        console.log('Client Name outside event handler:', clientName);
+    }
 
-
-    // Encode the selected items as a JSON string
-    const selectedItemsParam = encodeURIComponent(JSON.stringify(selectedItems));
-    const resultUrl = `result.html?selectedItems=${selectedItemsParam}&totalUnits=${totalUnits}&totalCost=${totalCost}&signingAmount=${signingAmount}&layoutFinalizationAmount=${layoutFinalizationAmount}&finalization3DCost=${finalization3DCost}&selectedLocation=${selectedLocation}&selectedHouseSize=${selectedHouseSize}&selectedProjectType=${selectedProjectType}&selectedPlan=${selectedPlan}`;
     document.addEventListener("DOMContentLoaded", function () {
     // Get references to the "House Size" dropdown and input fields
     const houseSizeDropdown = document.getElementById("projectSize");
@@ -943,92 +973,11 @@ function calculateEstimate() {
 
     // Get a reference to the result element
 
-const resultElement = document.getElementById("result");
     locationDropdown.addEventListener("change", calculateEstimate);
     planDropdown.addEventListener("change", calculateEstimate);
-    const selectedHouseSize = houseSizeDropdown.value;
-    const selectedProjectType = projectTypeDropdown.value;
+    
    
 // Add an event listener to the "Calculate Estimate" button
 document.getElementById("calculate-btn").addEventListener("click", calculateEstimate);
 
-// Function to calculate the total units used and total cost
-function calculateEstimate() {
-    const selectedLocation = locationDropdown.value.toLowerCase();
-    const selectedPlan = planDropdown.value.toLowerCase();
-    
-    let totalUnits = 0;
-
-    for (const type in inputFields) {
-        const inputValue = inputFields[type].value;
-        console.log(`Input Value for ${type}: "${inputValue}"`);
-        const quantity = parseFloat(inputValue) || 0;
-        console.log(`Parsed Quantity for ${type}: ${quantity}`);
-        const unitValue = unitValues[type];
-        console.log(`Unit Value for ${type}: ${unitValue}`);
-        totalUnits += quantity * unitValue;
-    }
-
-    // Calculate the base cost based on the selected location
-    const baseCost = baseCosts[selectedLocation];
-    if (!baseCost) {
-        resultElement.textContent = "Invalid location selected.";
-        return;
-    }
-
-    // Calculate the cost factor based on the selected plan
-    const costFactor = costFactors[selectedPlan];
-    if (!costFactor) {
-        resultElement.textContent = "Invalid plan selected.";
-        return;
-    }
-
-    // Calculate the total cost
-    const totalCost = baseCost * totalUnits * costFactor;
-    const signingAmount = 0.2355 * totalCost;
-
-    // Calculate the finalization of layout amount (58.888% of total cost)
-    const layoutFinalizationAmount = 0.58888 * totalCost;
-
-    // Calculate the 3D finalization cost (17.55% of total cost)
-    const finalization3DCost = 0.1755 * totalCost;
-
-    // Display the total units and total cost
-    if (!isNaN(totalUnits) && !isNaN(totalCost)) {
-        resultElement.textContent = ` Total Cost: ${totalCost}`;
-    } else {
-        resultElement.textContent = "Invalid input. Please enter numeric values.";
-    }
-
-    // Inside the "calculateEstimate" function
-    const selectedItems = {}; // Initialize an empty object
-
-    for (const type in inputFields) {
-        const inputValue = inputFields[type].value;
-        const quantity = parseFloat(inputValue) || 0;
-        selectedItems[type] = quantity; // Store the item name as the key and quantity as the value
-    }
-    
-
-
-    // Encode the selected items as a JSON string
-    const selectedItemsParam = encodeURIComponent(JSON.stringify(selectedItems));
-    const resultUrl = `result.html?selectedItems=${selectedItemsParam}&totalUnits=${totalUnits}&totalCost=${totalCost}&signingAmount=${signingAmount}&layoutFinalizationAmount=${layoutFinalizationAmount}&finalization3DCost=${finalization3DCost}&selectedLocation=${selectedLocation}&selectedHouseSize=${selectedHouseSize}&selectedProjectType=${selectedProjectType}&selectedPlan=${selectedPlan}`;
-    
-    // Open "result.html" in a new tab
-    window.open(resultUrl, '_blank');
-
-        
-    
-}}
-)
-
-
-    // Open "result.html" in a new tab
-    window.open(resultUrl, '_blank');   
-
-        
-    
-}}
-)
-
+    })}})
