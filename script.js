@@ -495,6 +495,12 @@ function calculateEstimate() {
         resultElement.textContent = "Invalid input. Please enter numeric values.";
     }
     document.getElementById('calculationResult').value = totalCost;
+    document.getElementById('signingAmountResult').value = signingAmount;
+    document.getElementById('layoutFinalizationAmountResult').value = layoutFinalizationAmount;
+    document.getElementById('3dFinalizationAmountResult').value = finalization3DCost;
+    document.getElementById('units').value = totalUnits;
+
+
 
     // Inside the "calculateEstimate" function
     const selectedItems = {}; // Initialize an empty object
