@@ -479,13 +479,13 @@ function calculateEstimate() {
 
     // Calculate the total cost
     const totalCost = baseCost * totalUnits * costFactor;
-    const signingAmount = 0.2355 * totalCost;
+    const signingAmount = 0.4 * totalCost;
 
     // Calculate the finalization of layout amount (58.888% of total cost)
-    const layoutFinalizationAmount = 0.58888 * totalCost;
+    const layoutFinalizationAmount = 0.4 * totalCost;
 
     // Calculate the 3D finalization cost (17.55% of total cost)
-    const finalization3DCost = 0.1755 * totalCost;
+    const finalization3DCost = 0.2 * totalCost;
 
     // Display the total units and total cost
     if (!isNaN(totalUnits) && !isNaN(totalCost)) {
