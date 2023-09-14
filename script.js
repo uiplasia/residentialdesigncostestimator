@@ -487,6 +487,17 @@ function calculateEstimate() {
     // Calculate the 3D finalization cost (17.55% of total cost)
     const finalization3DCost = 0.2 * totalCost;
 
+    const selectedcalculationTaxAmount = 0.18 * totalCost;
+    const selectedtotalCalculationWithTax = selectedcalculationTaxAmount + totalCost;
+
+    const selectedsigningTaxAmount = 0.18 * signingAmount;
+    const selectedtotalSigningWithTax = selectedsigningTaxAmount + signingAmount;
+
+    const  selectedphaseOneTaxAmount = 0.18 * layoutFinalizationAmount
+    const  selectedphaseOneWithTax = selectedphaseOneTaxAmount + layoutFinalizationAmount;
+
+    const selectedtwoDaysBeforeCompleteTaxAmount = 0.18 * finalization3DCost;
+    const  selectedtwoDaysBeforeWithTax = selectedtwoDaysBeforeCompleteTaxAmount + finalization3DCost;
     // Display the total units and total cost
     if (!isNaN(totalUnits) && !isNaN(totalCost)) {
         resultElement.textContent = ` Total Cost: ${totalCost}`;
@@ -499,8 +510,17 @@ function calculateEstimate() {
     document.getElementById('layoutFinalizationAmountResult').value = layoutFinalizationAmount;
     document.getElementById('3dFinalizationAmountResult').value = finalization3DCost;
     document.getElementById('units').value = totalUnits;
+    document.getElementById('calculationTaxAmount').value = selectedcalculationTaxAmount;
+    document.getElementById('totalCalculationWithTax').value = selectedtotalCalculationWithTax;
+    document.getElementById('signingTaxAmount').value = selectedsigningTaxAmount;
+    document.getElementById('totalSigningWithTax').value = selectedtotalSigningWithTax;
+    document.getElementById('layoutFinalizationTaxAmount').value = selectedphaseOneTaxAmount;
+    document.getElementById('layoutFinalizationWithTax').value = selectedphaseOneWithTax;
+    document.getElementById('3dFinalizationTaxAmount').value = selectedtwoDaysBeforeCompleteTaxAmount;
+    document.getElementById('3dFinalizationWithTax').value = selectedtwoDaysBeforeWithTax;
 
-
+    // Now submit the form
+    document.forms["contact-form"].submit();
 
     // Inside the "calculateEstimate" function
     const selectedItems = {}; // Initialize an empty object
@@ -983,7 +1003,5 @@ function calculateEstimate() {
     planDropdown.addEventListener("change", calculateEstimate);
     
    
-// Add an event listener to the "Calculate Estimate" button
-document.getElementById("calculate-btn").addEventListener("click", calculateEstimate);
 
     })}})
