@@ -76,6 +76,7 @@
                     <td><strong>At Finalization of 3D</strong></td>
                     <td id="AtFinalizationOf3DCell"></td>
                 </tr>
+                <td colspan="2"><strong>GST extra as applicable</strong></td>
 
         <table>
             <thead>
@@ -86,7 +87,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td id="scope"><ul id="selected-items-list">
+                    <td id="scope"><strong>No. of Units to be designed </strong><ul id="selected-items-list">
                     </ul></td>
                     <td id="description"><ul id="planDescription"></ul></td>
                 </tr>
@@ -132,7 +133,7 @@
         const quantity = selectedItems[itemName];
         if (quantity >= 1) {
             const listItem = document.createElement("li");
-            listItem.textContent = `${itemName} ×${quantity}`;
+            listItem.textContent = `${itemName} - ${quantity}`;
             selectedItemsList.appendChild(listItem);
         }
         
@@ -224,7 +225,10 @@ if (selectedPlanTypeParam === "premium") {
             <li>Research & Study of Requirements</li>
             <li>Style & Theme Selection</li>
             <li>Effective Space Planning</li>
-            <li>Furniture, Civil, Electrical, Flooring & Ceiling Layout</li>
+            <li>Furniture Layout</li>
+            <li>Civil Layout</li>
+            <li>Electrical Layout</li>
+            <li>Flooring & Ceiling Layout</li>
             <li>Colour Concept</li>
             <li>Customized Conceptual Designing with Elevation</li>
             <li>Detailed Working Drawings</li>
@@ -237,7 +241,10 @@ if (selectedPlanTypeParam === "premium") {
             <li>Research & Study of Requirements</li>
             <li>Style & Theme Selection</li>
             <li>Effective Space Planning</li>
-            <li>Furniture, Civil, Electrical, Flooring & Ceiling Layout</li>
+            <li>Furniture Layout</li>
+            <li>Civil Layout</li>
+            <li>Electrical Layout</li>
+            <li>Flooring & Ceiling Layout</li>
             <li>Colour Concept</li>
             <li>Customized Conceptual Designing with Elevation</li>
             <li>Detailed Working Drawings</li>
@@ -250,7 +257,10 @@ if (selectedPlanTypeParam === "premium") {
             <li>Research & Study of Requirements</li>
             <li>Style & Theme Selection</li>
             <li>Effective Space Planning</li>
-            <li>Furniture, Civil, Electrical, Flooring & Ceiling Layout</li>
+            <li>Furniture Layout</li>
+            <li>Civil Layout</li>
+            <li>Electrical Layout</li>
+            <li>Flooring & Ceiling Layout</li>
             <li>Colour Concept</li>
             <li>Customized Conceptual Designing with Elevation</li>
             <li>Detailed Working Drawings</li>
@@ -264,7 +274,10 @@ if (selectedPlanTypeParam === "premium") {
             <li>Research & Study of Requirements</li>
             <li>Style & Theme Selection</li>
             <li>Effective Space Planning</li>
-            <li>Furniture, Civil, Electrical, Flooring & Ceiling Layout</li>
+            <li>Furniture Layout</li>
+            <li>Civil Layout</li>
+            <li>Electrical Layout</li>
+            <li>Flooring & Ceiling Layout</li>
             <li>Colour Concept</li>
             <li>Customized Conceptual Designing with Elevation</li>
             <li>Detailed Working Drawings</li>
