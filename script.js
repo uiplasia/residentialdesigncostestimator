@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 "VESTIBULE ": 0,
                 "DRAWING ROOM ": 1,
             },
-            archhitecture: {
+            architecture: {
                 "KITCHEN ": 1,
                 "bedroom ": 3,
                 "entrance ": 1,
@@ -161,7 +161,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 "VESTIBULE ": 1,
                 "DRAWING ROOM ": 1,
             },
-            archhitecture: {
+            architecture: {
                 "KITCHEN ": 1,
                 "bedroom ": 4,
                 "entrance ": 1,
@@ -212,7 +212,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 "VESTIBULE ": 1,
                 "DRAWING ROOM ": 1,
             },
-            archhitecture: {
+            architecture: {
                 "KITCHEN ": 1,
                 "bedroom ": 5,
                 "entrance ": 1,
@@ -262,7 +262,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 "VESTIBULE ": 1,
                 "DRAWING ROOM ": 1,
             },
-            archhitecture: {
+            architecture: {
                 "KITCHEN ": 1,
                 "bedroom ": 6,
                 "entrance ": 1,
@@ -312,7 +312,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 "VESTIBULE ": 1,
                 "DRAWING ROOM ": 1,
             },
-            archhitecture: {
+            architecture: {
                 "KITCHEN ": 1,
                 "bedroom ": 7,
                 "entrance ": 1,
@@ -674,7 +674,7 @@ function calculateEstimate() {
                 "VESTIBULE ": 0,
                 "DRAWING ROOM ": 1,
             },
-            archhitecture: {
+            architecture: {
                 "KITCHEN ": 1,
                 "bedroom ": 3,
                 "entrance ": 1,
@@ -725,7 +725,7 @@ function calculateEstimate() {
                 "VESTIBULE ": 1,
                 "DRAWING ROOM ": 1,
             },
-            archhitecture: {
+            architecture: {
                 "KITCHEN ": 1,
                 "bedroom ": 4,
                 "entrance ": 1,
@@ -776,7 +776,7 @@ function calculateEstimate() {
                 "VESTIBULE ": 1,
                 "DRAWING ROOM ": 1,
             },
-            archhitecture: {
+            architecture: {
                 "KITCHEN ": 1,
                 "bedroom ": 5,
                 "entrance ": 1,
@@ -826,7 +826,7 @@ function calculateEstimate() {
                 "VESTIBULE ": 1,
                 "DRAWING ROOM ": 1,
             },
-            archhitecture: {
+            architecture: {
                 "KITCHEN ": 1,
                 "bedroom ": 6,
                 "entrance ": 1,
@@ -876,7 +876,7 @@ function calculateEstimate() {
                 "VESTIBULE ": 1,
                 "DRAWING ROOM ": 1,
             },
-            archhitecture: {
+            architecture: {
                 "KITCHEN ": 1,
                 "bedroom ": 7,
                 "entrance ": 1,
